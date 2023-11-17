@@ -88,4 +88,49 @@ func main() {
 	// m := sonButun % 1000
 	// fmt.Println("Natija:", m)
 
+	// 10
+	// var a, b float64
+	// fmt.Print("To'g'ri to'rtburchakni 2 tomonini kiriting: ")
+	// fmt.Scanln(&a, &b)
+
+	// area := a * b
+	// fmt.Println("To'g'ri to'rtburchak yuzi:", area)
+
+	// 11
+	// var son float64
+	// fmt.Print("Sonni kiriting: ")
+	// fmt.Scanln(&son)
+
+	// cube := son * son * son
+	// fmt.Println("Kub:", cube)
+
+	// 12
+	// var radius float64
+	// fmt.Print("Doira radiusini kiriting: ")
+	// fmt.Scanln(&radius)
+
+	// pi := 3.14
+	// area := pi * radius * radius
+	// fmt.Println("Doira yuzi:", area)
+
+	// 13
+	// var a, b float64
+	// fmt.Print("To'g'ri to'rtburchakni 2 tomonini kiriting: ")
+	// fmt.Scanln(&a, &b)
+
+	// perimeter := 2 * (a + b)
+	// fmt.Println("To'g'ri to'rtburchak perimetri:", perimeter)
+
+	// 14
+	// var radius float64
+	// fmt.Print("Shar (sfera) radiusini kiriting: ")
+	// fmt.Scanln(&radius)
+
+	// pi := 3.14
+	// surfaceArea := 4 * pi * radius * radius
+	// volume := (4 / 3) * pi * radius * radius * radius
+
+	// fmt.Println("Shar yuzi:", surfaceArea)
+	// fmt.Println("Shar hajmi:", volume)
+
 }
