@@ -1,128 +1,221 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-func SumOfMaxAndMin(a, b, c float64) float64 {
-	max := 0.0
-	min := 0.0
-
-	if a > b && a > c {
-		max = a
-	} else if b > c {
-		max = b
-	} else {
-		max = c
-	}
-	if a < b && a < c {
-		min = a
-	} else if b < c {
-		min = b
-	} else {
-		min = c
-	}
-
-	return max + min
-}
-
-func distance(x1, y1, x2, y2 float64) float64 {
-	dx := x2 - x1
-	dy := y2 - y1
-	return math.Sqrt(dx*dx + dy*dy)
-}
-
-func solveQuadratic(a, b, c float64) (float64, float64, bool) {
-	discriminant := b*b - 4*a*c
-
-	if discriminant < 0 {
-		return 0, 0, false
-	}
-
-	x1 := (-b + math.Sqrt(discriminant)) / (2 * a)
-	x2 := (-b - math.Sqrt(discriminant)) / (2 * a)
-
-	return x1, x2, true
-}
-
-func fib(n int) int {
-	a := 0
-	b := 1
-	for i := 0; i < n; i++ {
-		temp := a + b
-		a = b
-		b = temp
-	}
-	return a
-}
-
-func photo1(n int) {
-
-	for i := n; i >= 1; i-- {
-		for j := 1; j <= n-i; j++ {
-			fmt.Print(" ")
-		}
-		for k := 1; k <= i; k++ {
-			fmt.Print("#")
-		}
-		fmt.Println()
-
-	}
-
-}
-func photo2(n int) {
-
-	for i := n; i >= 1; i-- {
-		for j := i; 0 <= j-1; j-- {
-			fmt.Print(" ")
-		}
-		for k := 0; k <= n-i; k++ {
-			fmt.Print("#")
-		}
-		fmt.Println()
-	}
-}
 func main() {
+	// sum := 0
+	// finder := 0
+	// var slice1 = []int{1, -2, 3, -4, 5, -6, 7, -8, 9, -10}
+	// a := 0
+	// b := 0
 
-	// var (
-	// 	a float64
-	// 	b float64
-	// 	c float64
-	// )
-	// fmt.Print("a : ")
-	// fmt.Scan(&a)
-	// fmt.Print("b : ")
-	// fmt.Scan(&b)
-	// fmt.Print("c : ")
-	// fmt.Scan(&c)
-
-	// sum := SumOfMaxAndMin(a, b, c)
+	// for i := 0; i < 10; i++ {
+	// 	if slice1[i] < 0 {
+	// 		finder++
+	// 	}
+	// 	if finder == 2 {
+	// 		a = i
+	// 	}
+	// 	if finder == 4 {
+	// 		b = i
+	// 		break
+	// 	}
+	// }
+	// for i := a; i < b; i++ {
+	// 	sum += slice1[i]
+	// }
 	// fmt.Println(sum)
-
 	//2
-	// x1, y1 := 1.0, 2.0
-	// x2, y2 := 4.0, 6.0
+	// var slice1 = []int{0, -1, 2, -3, 4, 0, 5, -6, 7, 0}
+	// musbat := 0
+	// manfiy := 0
+	// toq := 0
+	// juft := 0
+	// nol := 0
 
-	// dist := distance(x1, y1, x2, y2)
-	// fmt.Printf("The distance between (%.2f, %.2f) and (%.2f, %.2f) is %.2f\n", x1, y1, x2, y2, dist)
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] == 0 {
+	// 		nol++
+	// 	}
+	// 	if slice1[i] > 0 {
+	// 		musbat++
+	// 	}
+	// 	if slice1[i] < 0 {
+	// 		manfiy++
+	// 	}
+	// 	if slice1[i]%2 == 0 {
+	// 		juft++
+	// 	}
+	// 	if slice1[i]%2 == 1 {
+	// 		toq++
+	// 	}
+	// }
+	// fmt.Println("musbat", musbat, " ta ")
+	// fmt.Println("manfiy", manfiy, " ta ")
+	// fmt.Println("nol", nol, " ta ")
+	// fmt.Println("toq", toq, " ta ")
+	// fmt.Println("juft", juft, " ta ")
 
 	//3
-	// a, b, c := 1.0, -3.0, 2.0
 
-	// x1, x2, ok := solveQuadratic(a, b, c)
-	// if ok {
-	// 	fmt.Printf("The solutions are x1 = %.2f and x2 = %.2f\n", x1, x2)
-	// } else {
-	// 	fmt.Println("No real solutions exist.")
+	// var slice1 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	// var juft = []int{}
+	// var toq = []int{}
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i]%2 == 0 {
+	// 		juft = append(juft, slice1[i])
+	// 	}
+	// 	if slice1[i]%2 == 1 {
+	// 		toq = append(toq, slice1[i])
+	// 	}
 	// }
+	// fmt.Println(juft)
+	// fmt.Println(toq)
 
 	//4
-	fib := fib(4)
 
-	fmt.Println(fib)
+	// var slice1 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	// var juft = 1
+	// var toq = 0
 
-	// photo1(5)
-	// photo2(5)
+	// for i := 0; i < len(slice1); i++ {
+	// 	if i%2 == 0 {
+	// 		juft *= slice1[i]
+	// 	}
+	// 	if slice1[i]%2 == 1 {
+	// 		toq += slice1[i]
+	// 	}
+	// }
+	// fmt.Println(juft)
+	// fmt.Println(toq)
+
+	//5
+
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 1, 8, 9, 10}
+
+	// min := slice1[0]
+	// secondMin := slice1[1]
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] < min {
+	// 		min = slice1[i] // 1
+	// 	}
+	// }
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] < secondMin && slice1[i] != min {
+	// 		secondMin = slice1[i]
+	// 	}
+	// }
+
+	// fmt.Println(min, secondMin)
+
+	//6
+
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 1, 8, 9, 10}
+
+	// max := slice1[0]
+	// secondMax := slice1[1]
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] > max {
+	// 		max = slice1[i] // 1
+	// 	}
+	// }
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] > secondMax && slice1[i] != max {
+	// 		secondMax = slice1[i]
+	// 	}
+	// }
+
+	// fmt.Println(max, secondMax)
+
+	//7
+
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 1, 8, 9, 10}
+
+	// slice1[0], slice1[len(slice1)-1] = slice1[len(slice1)-1], slice1[0]
+
+	// fmt.Println(slice1)
+
+	//8
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 1, 8, 9, 10}
+
+	// counter := 0
+	// a := 0
+	// max := slice1[0]
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] > max {
+	// 		max = slice1[i]
+	// 		a = i
+	// 	}
+	// }
+
+	// for i := a + 1; i < len(slice1); i++ {
+	// 	counter++
+	// }
+
+	// fmt.Println("max dan keyin ", counter, " ta son bor")
+
+	//9
+
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 1, 8, 9, 10}
+
+	// counter := 0
+	// a := 0
+	// min := slice1[0]
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] < min {
+	// 		min = slice1[i]
+	// 		a = i
+	// 	}
+	// }
+
+	// for i := 0; i < a; i++ {
+	// 	counter++
+	// }
+
+	// fmt.Println("min dan oldin ", counter, " ta son bor")
+
+	//10
+
+	// var slice1 = []int{11, 11, 33, 3, 4, 5, 41, 6, 2, 8, 9, 10}
+
+	// counter := 0
+	// a := 0
+	// b := 0
+	// min := slice1[0]
+	// max := slice1[0]
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] < min {
+	// 		min = slice1[i]
+	// 		a = i
+	// 	}
+	// }
+
+	// for i := 0; i < len(slice1); i++ {
+	// 	if slice1[i] > max {
+	// 		max = slice1[i]
+	// 		b = i
+	// 	}
+	// }
+
+	// fmt.Println(a, b)
+	// if a > b {
+	// 	for i := b + 1; i < a; i++ {
+	// 		counter++
+	// 	}
+	// } else {
+	// 	for i := a + 1; i < b; i++ {
+	// 		counter++
+	// 	}
+	// }
+
+	// fmt.Println("min dan max ", counter, " ta son bor")
 
 }
