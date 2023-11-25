@@ -1,80 +1,155 @@
 package main
 
 import (
-	"math"
+	"fmt"
 )
+
+type Car struct {
+	Name       string
+	Price      float64
+	Model      string
+	HorsePower int
+}
+type Student struct {
+	Name        string
+	Age         int
+	Scholarship int
+	Score       []int
+}
+type Team struct {
+	Name         string
+	Coach        string
+	PlayersCount int
+	Captain      string
+}
 
 func main() {
 	//1
-	// var slice1 = []int{2, 9, 3, -4, 5}
-	// max := 0
-	// min := 0
+	// cars := []Car{
+	// 	{
+	// 		Name:       "aame",
+	// 		Price:      0,
+	// 		Model:      "String",
+	// 		HorsePower: 2,
+	// 	},
+	// 	{
+	// 		Name:       "dame",
+	// 		Price:      0,
+	// 		Model:      "String",
+	// 		HorsePower: 2,
+	// 	},
+	// 	{
+	// 		Name:       "bame",
+	// 		Price:      0,
+	// 		Model:      "String",
+	// 		HorsePower: 2,
+	// 	},
+	// 	{
+	// 		Name:       "came",
+	// 		Price:      0,
+	// 		Model:      "String",
+	// 		HorsePower: 2,
+	// 	},
+	// 	{
+	// 		Name:       "yame",
+	// 		Price:      0,
+	// 		Model:      "String",
+	// 		HorsePower: 2,
+	// 	},
+	// }
 
-	// for i := 0; i < len(slice1); i++ {
-	// 	if slice1[max] < slice1[i] {
-	// 		max = i
+	// for i := 0; i < len(cars); i++ {
+	// 	for j := i + 1; j < len(cars); j++ {
+	// 		if cars[i].Name > cars[j].Name {
+	// 			cars[i], cars[j] = cars[j], cars[i]
+	// 		}
 	// 	}
 	// }
-	// for i := 0; i < len(slice1); i++ {
-	// 	if slice1[min] > slice1[i] {
-	// 		min = i
-	// 	}
-	// }
-	// fmt.Println("max: ", max, "   min : ", min)
 
-	// slice1[min], slice1[max] = slice1[max], slice1[min]
-
-	// fmt.Println(slice1)
+	//	fmt.Println(cars)
 
 	//2
 
-	// var slice = []int{3, 5, 6, -9, 17, 21, 33, 0, 43, 8}
-	// var catchPrime = []int{}
-	// counter := 0
+	teams := []Team{
+		{
+			Name:         "Barcelona",
+			Coach:        "Ronald Koeman",
+			PlayersCount: 25,
+			Captain:      "Lionel Messi"},
 
-	// for i := 0; i < len(slice); i++ {
-	// 	if isPrime(slice[i]) {
-	// 		counter++
-	// 		catchPrime = append(catchPrime, slice[i])
-	// 	}
-	// }
-	// fmt.Println(counter)
-	// fmt.Println(catchPrime)
-
-	//3
-
-	// var slice = []int{3, 5, 6, -9, 17, 21, 33, 0, 43, 8}
-
-	// sum1 := 0
-	// sum2 := 0
-	// for i := 0; i < len(slice); i++ {
-	// 	sum1 = sum1 + slice[i]
-	// 	sum2 = sum2 + i
-	// }
-	// if sum2 > sum1 {
-	// 	fmt.Println("INDEX")
-	// } else if sum2 < sum1 {
-	// 	fmt.Println("VALUES")
-	// } else {
-	// 	fmt.Println("WOW")
-	// }
-
-	//4
-
-}
-
-func isPrime(n int) bool {
-	if n <= 1 {
-		return false
+		{
+			Name:         "Real Madrid",
+			Coach:        "Carlo Ancelotti",
+			PlayersCount: 23,
+			Captain:      "Sergio Ramos"},
+		{
+			Name:         "Manchester United",
+			Coach:        "Ole Gunnar Solskjaer",
+			PlayersCount: 28,
+			Captain:      "Harry Maguire"},
+		{
+			Name:         "Bayern Munich",
+			Coach:        "Julian Nagelsmann",
+			PlayersCount: 22,
+			Captain:      "Manuel Neuer"},
 	}
-	sqrt := int(math.Sqrt(float64(n)))
-	for i := 2; i <= sqrt; i++ {
-		if n%i == 0 {
-			return false
+
+	for i := 0; i < len(teams)-1; i++ {
+		for j := i + 1; j < len(teams); j++ {
+			if teams[i].PlayersCount > teams[j].PlayersCount {
+				teams[i], teams[j] = teams[j], teams[i]
+			}
 		}
 	}
 
-	return true
-}
+	for _, team := range teams {
+		fmt.Printf("Team: %s\n", team.Name)
+		fmt.Printf("Coach: %s\n", team.Coach)
+		fmt.Printf("Players Count: %d\n", team.PlayersCount)
+		fmt.Printf("Captain: %s\n", team.Captain)
+		fmt.Println()
+	}
 
-//    s = {1,2,3,4,5,6,4,4,5,5,3}
+	//3
+	// sumOfScore := 0
+
+	// students := []Student{
+	// 	{
+	// 		Name:        "Anvar",
+	// 		Age:         19,
+	// 		Scholarship: 75,
+	// 		Score:       []int{4, 5, 4, 3, 5},
+	// 	},
+	// 	{
+	// 		Name:        "Jamshid",
+	// 		Age:         19,
+	// 		Scholarship: 75,
+	// 		Score:       []int{5, 5, 5, 5, 5},
+	// 	}, {
+	// 		Name:        "Sarvar",
+	// 		Age:         19,
+	// 		Scholarship: 75,
+	// 		Score:       []int{4, 4, 4, 5, 4},
+	// 	}, {
+	// 		Name:        "Gulom",
+	// 		Age:         19,
+	// 		Scholarship: 75,
+	// 		Score:       []int{3, 3, 3, 3, 3},
+	// 	}, {
+	// 		Name:        "Polat",
+	// 		Age:         19,
+	// 		Scholarship: 75,
+	// 		Score:       []int{4, 3, 4, 4, 3},
+	// 	},
+	// }
+
+	// for i := 0; i < len(students); i++ {
+	// 	for j := 0; j < len(students[i].Score); j++ {
+	// 		sumOfScore += students[i].Score[j]
+	// 	}
+	// 	if sumOfScore/len(students[i].Score) >= 4 {
+	// 		fmt.Println(students[i])
+	// 	}
+	// 	sumOfScore = 0
+	// }
+}
