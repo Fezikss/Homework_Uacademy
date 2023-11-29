@@ -1,0 +1,98 @@
+package main
+
+import "fmt"
+
+func main() {
+	for _, vClient := range clients {
+		sum := 0
+		maxProduct := 0
+
+		for _, vCardProduct := range vClient.Basket {
+			for _, vProduct := range products {
+				if vCardProduct.ProductId == vProduct.Id {
+					for _, size := range vProduct.Sizes {
+						if vCardProduct.ProductId == size.Id {
+							sum += size.Price * vCardProduct.Quantity
+							if vCardProduct.Quantity > maxProduct {
+								maxProduct = vCardProduct.Quantity
+							}
+							fmt.Println(vProduct.Name, size.Name, maxProduct, "ta", size.Price)
+						}
+					}
+				}
+
+			}
+
+		}
+		fmt.Println()
+		fmt.Println(vClient.Name, "'s total sum : ", sum)
+		fmt.Println("---------------------------")
+
+	}
+}
+
+type Clients struct {
+	Id     int
+	Name   string
+	Basket []CardProducts
+}
+
+type CardProducts struct {
+	ProductId int
+	SizeId    int
+	Quantity  int
+}
+
+type Product struct {
+	Id    int
+	Name  string
+	Sizes []Size
+}
+
+type Size struct {
+	Id    int
+	Name  string
+	Price int
+}
+
+var clients = []Clients{
+	{Id: 1, Name: "Fozil", Basket: []CardProducts{
+		{ProductId: 1, SizeId: 2, Quantity: 4},
+		{ProductId: 4, SizeId: 1, Quantity: 3},
+		{ProductId: 3, SizeId: 3, Quantity: 1},
+	},
+	},
+	{Id: 1, Name: "Anvar", Basket: []CardProducts{
+		{ProductId: 2, SizeId: 1, Quantity: 1},
+		{ProductId: 2, SizeId: 2, Quantity: 6},
+		{ProductId: 5, SizeId: 1, Quantity: 5},
+	},
+	},
+}
+var products = []Product{
+	{Id: 1, Name: "Pizza", Sizes: []Size{
+		{Id: 1, Name: "25sm", Price: 30000},
+		{Id: 2, Name: "30sm", Price: 45000},
+		{Id: 3, Name: "35sm", Price: 70000},
+	}},
+	{Id: 2, Name: "Burger", Sizes: []Size{
+		{Id: 1, Name: "Small", Price: 30000},
+		{Id: 2, Name: "Medium", Price: 45000},
+		{Id: 3, Name: "Big", Price: 70000},
+	}},
+	{Id: 1, Name: "Hot-Dog", Sizes: []Size{
+		{Id: 1, Name: "Small", Price: 15000},
+		{Id: 2, Name: "Medium", Price: 25000},
+		{Id: 3, Name: "Big", Price: 30000},
+	}},
+	{Id: 1, Name: "Coca-cola", Sizes: []Size{
+		{Id: 1, Name: "0.5", Price: 5000},
+		{Id: 2, Name: "1.0", Price: 8000},
+		{Id: 3, Name: "1.5", Price: 10000},
+	}},
+	{Id: 1, Name: "Fanta", Sizes: []Size{
+		{Id: 1, Name: "0.5", Price: 5000},
+		{Id: 2, Name: "1.0", Price: 8000},
+		{Id: 3, Name: "1.5", Price: 11000},
+	}},
+}
