@@ -1,0 +1,144 @@
+package main
+
+import (
+	"fmt"
+	"math"
+	"math/rand"
+)
+
+var chanses int
+
+func main() {
+	game := Game{}
+	player := Player{}
+
+	playerName := getPlayerName()
+	playerAge := getPlayerAge()
+	playerFovouriteNumber := getPlayerFovouriteNumber()
+	newPlayer := player.NewPlayer(playerName, chanses, playerAge, playerFovouriteNumber)
+	newGame := game.NewGame(newPlayer)
+	newGame.StartGame()
+
+}
+
+type Game struct {
+	RandomNumber    int
+	Player          Player
+	FovouriteNumber Player
+}
+
+func (g Game) NewGame(player Player) Game {
+	return Game{
+		Player: player,
+	}
+}
+func (g Game) StartGame() {
+	fmt.Println("Wlecome ", g.Player.Name)
+	fmt.Println("This is guessing game !")
+	fmt.Print("How many chanses do you want to have?  : ")
+	fmt.Scan(&chanses)
+	findRandomNumberSize := 0
+
+	if chanses <= 3 {
+		findRandomNumberSize = 10
+		fmt.Println("Random Number size is  0 - 10")
+
+	} else if chanses <= 10 {
+		findRandomNumberSize = 100
+		fmt.Println("Random Number size is  0 - 100")
+	} else {
+		findRandomNumberSize = 500
+		fmt.Println("Random Number size is  0 - 500")
+	}
+	randomNumber := rand.Intn(findRandomNumberSize)
+
+	for i := 0; i < chanses; i++ {
+		var (
+			getNumberFromUser int
+		)
+		fmt.Print("Enter the number for ", i+1, " chance : ")
+		fmt.Scan(&getNumberFromUser)
+		if isPrime(randomNumber) {
+			fmt.Println("Random number is prime !")
+		}
+		if getNumberFromUser == g.Player.FovouriteNumber && getNumberFromUser == randomNumber {
+			fmt.Println(" you won and RandomNumber was your FovouriteNumber")
+			return
+		} else if getNumberFromUser == randomNumber {
+			fmt.Println("You won !")
+			fmt.Println()
+			fmt.Println("You found ", i+1, "chance !")
+			return
+		} else {
+			fmt.Println("Incorrect")
+			fmt.Println()
+			if randomNumber > getNumberFromUser {
+				fmt.Println("Random Number is greater !")
+				fmt.Println()
+			} else {
+				fmt.Println("Random Number is lower !")
+				fmt.Println()
+			}
+		}
+	}
+
+	fmt.Println("Game Over !/n Random was ", randomNumber, "!")
+
+}
+
+type Player struct {
+	Name            string
+	Chances         int
+	Age             int
+	FovouriteNumber int
+}
+
+func (p Player) NewPlayer(name string, chances int, age int, fovouriteNumber int) Player {
+	return Player{
+		Name:            name,
+		Chances:         chances,
+		Age:             age,
+		FovouriteNumber: fovouriteNumber,
+	}
+}
+func getPlayerName() string {
+	var (
+		name string
+	)
+	fmt.Print("Enter your name : ")
+	fmt.Scan(&name)
+
+	return name
+}
+func getPlayerAge() int {
+	var (
+		age int
+	)
+	fmt.Print("Enter your age : ")
+	fmt.Scan(&age)
+
+	return age
+}
+func getPlayerFovouriteNumber() int {
+	var (
+		fovouriteNumber int
+	)
+	fmt.Print("Enter your fovouriteNumber  : ")
+	fmt.Scan(&fovouriteNumber)
+
+	return fovouriteNumber
+}
+func isPrime(num int) bool {
+	if num <= 1 {
+		return false
+	}
+	limit := int(math.Sqrt(float64(num)))
+	for i := 2; i <= limit; i++ {
+		if num%i == 0 {
+			return false
+		}
+	}
+
+	return true
+
+}
