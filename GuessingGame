@@ -6,65 +6,56 @@ import (
 	"math/rand"
 )
 
-var chanses int
-
 func main() {
 	game := Game{}
 	player := Player{}
 
-	playerName := getPlayerName()
-	playerAge := getPlayerAge()
-	playerFovouriteNumber := getPlayerFovouriteNumber()
-	newPlayer := player.NewPlayer(playerName, chanses, playerAge, playerFovouriteNumber)
+	playerName, playerAge, playerFovouriteNumber, chance := getPlayerInfo()
+
+	newPlayer := player.NewPlayer(playerName, chance, playerAge, playerFovouriteNumber)
 	newGame := game.NewGame(newPlayer)
 	newGame.StartGame()
 
 }
 
 type Game struct {
-	RandomNumber    int
-	Player          Player
-	FovouriteNumber Player
+	RandomNumber int
+	Player       Player
 }
 
 func (g Game) NewGame(player Player) Game {
+	randomNumber := 0
+	if player.Chances <= 3 {
+		randomNumber = rand.Intn(10)
+
+	} else if player.Chances <= 10 {
+		randomNumber = rand.Intn(50)
+	} else {
+		randomNumber = rand.Intn(100)
+	}
 	return Game{
-		Player: player,
+		Player:       player,
+		RandomNumber: randomNumber,
 	}
 }
+
 func (g Game) StartGame() {
 	fmt.Println("Wlecome ", g.Player.Name)
 	fmt.Println("This is guessing game !")
-	fmt.Print("How many chanses do you want to have?  : ")
-	fmt.Scan(&chanses)
-	findRandomNumberSize := 0
 
-	if chanses <= 3 {
-		findRandomNumberSize = 10
-		fmt.Println("Random Number size is  0 - 10")
-
-	} else if chanses <= 10 {
-		findRandomNumberSize = 100
-		fmt.Println("Random Number size is  0 - 100")
-	} else {
-		findRandomNumberSize = 500
-		fmt.Println("Random Number size is  0 - 500")
+	if isPrime(g.RandomNumber) {
+		fmt.Println("Random number is prime !")
 	}
-	randomNumber := rand.Intn(findRandomNumberSize)
-
-	for i := 0; i < chanses; i++ {
+	for i := 0; i < g.Player.Chances; i++ {
 		var (
 			getNumberFromUser int
 		)
 		fmt.Print("Enter the number for ", i+1, " chance : ")
 		fmt.Scan(&getNumberFromUser)
-		if isPrime(randomNumber) {
-			fmt.Println("Random number is prime !")
-		}
-		if getNumberFromUser == g.Player.FovouriteNumber && getNumberFromUser == randomNumber {
+		if getNumberFromUser == g.Player.FovouriteNumber && getNumberFromUser == g.RandomNumber {
 			fmt.Println(" you won and RandomNumber was your FovouriteNumber")
 			return
-		} else if getNumberFromUser == randomNumber {
+		} else if getNumberFromUser == g.RandomNumber {
 			fmt.Println("You won !")
 			fmt.Println()
 			fmt.Println("You found ", i+1, "chance !")
@@ -72,7 +63,7 @@ func (g Game) StartGame() {
 		} else {
 			fmt.Println("Incorrect")
 			fmt.Println()
-			if randomNumber > getNumberFromUser {
+			if g.RandomNumber > getNumberFromUser {
 				fmt.Println("Random Number is greater !")
 				fmt.Println()
 			} else {
@@ -82,7 +73,7 @@ func (g Game) StartGame() {
 		}
 	}
 
-	fmt.Println("Game Over !/n Random was ", randomNumber, "!")
+	fmt.Println("Game Over !/n Random was ", g.RandomNumber, "!")
 
 }
 
@@ -101,33 +92,7 @@ func (p Player) NewPlayer(name string, chances int, age int, fovouriteNumber int
 		FovouriteNumber: fovouriteNumber,
 	}
 }
-func getPlayerName() string {
-	var (
-		name string
-	)
-	fmt.Print("Enter your name : ")
-	fmt.Scan(&name)
 
-	return name
-}
-func getPlayerAge() int {
-	var (
-		age int
-	)
-	fmt.Print("Enter your age : ")
-	fmt.Scan(&age)
-
-	return age
-}
-func getPlayerFovouriteNumber() int {
-	var (
-		fovouriteNumber int
-	)
-	fmt.Print("Enter your fovouriteNumber  : ")
-	fmt.Scan(&fovouriteNumber)
-
-	return fovouriteNumber
-}
 func isPrime(num int) bool {
 	if num <= 1 {
 		return false
@@ -141,4 +106,30 @@ func isPrime(num int) bool {
 
 	return true
 
+}
+
+func getPlayerInfo() (string, int, int, int) {
+	var (
+		name string
+	)
+	fmt.Print("Enter your name : ")
+	fmt.Scan(&name)
+	var (
+		age int
+	)
+	fmt.Print("Enter your age : ")
+	fmt.Scan(&age)
+	var (
+		fovouriteNumber int
+	)
+	fmt.Print("Enter your fovouriteNumber  : ")
+	fmt.Scan(&fovouriteNumber)
+
+	var (
+		chances int
+	)
+	fmt.Print("Enter your chances  : ")
+	fmt.Scan(&chances)
+
+	return name, age, fovouriteNumber, chances // name, age, fn, ch
 }
